@@ -16,8 +16,8 @@
 
          loader.addJson('person', './static/persons.json');
 
-         loader.load(() => {
-            console.log('images losd');
+         loader.load((image) => {
+            document.body.append(image);
          });
       </script>
    </body>

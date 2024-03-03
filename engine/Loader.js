@@ -51,7 +51,7 @@
             promises.push(promise);
          }
 
-         Promise.all(promises).then(() => callback());
+         Promise.all(promises).then(() => callback(this.resources.images['rabbit']));
       }
 
       static loadImage(src) {

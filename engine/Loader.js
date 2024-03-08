@@ -21,6 +21,14 @@
          this.loadOrder.jsons.push({name, address});
       }
 
+      getImage(name) {
+         return this.resources.images[name];
+      }
+
+      getJson(name) {
+         return this.resources.jsons[name];
+      }
+
       load(callback) {
          const promises = [];
          for (const imageData of this.loadOrder.images) {
@@ -51,7 +59,7 @@
             promises.push(promise);
          }
 
-         Promise.all(promises).then(() => callback(this.resources.images['rabbit']));
+         Promise.all(promises).then(() => callback());
       }
 
       static loadImage(src) {

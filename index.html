@@ -7,18 +7,36 @@
    </head>
    <body>
       <script src="./engine/Loader.js"></script>
+      <script src="./engine/Renderer.js"></script>
       <script>
-         const {Loader} = GameEngine;
+         const {Loader, Renderer} = GameEngine;
 
          const loader = new Loader();
+         const renderer = new Renderer({
+            width: 500,
+            height: 500,
+            background: 'grey',
+            update(timestamp) {
+               renderer.draw((canvas, ctx) => {
+                  ctx.beginPath();
+                  ctx.fillStyle = 'tomato';
+                  ctx.arc(
+                     canvas.width / 2 + 200 * Math.cos(timestamp / 600),
+                     canvas.height / 2 + 200 * Math.sin(timestamp / 600),
+                     25,
+                     0,
+                     Math.PI * 2
+                  );
+                  ctx.fill();
+               });
+            },
+         });
+
+         document.body.append(renderer.canvas);
 
          loader.addImage('rabbit', './static/rabbit.jpg');
-
          loader.addJson('person', './static/persons.json');
-
-         loader.load((image) => {
-            document.body.append(image);
-         });
+         loader.load(() => {});
       </script>
    </body>
 </html>
